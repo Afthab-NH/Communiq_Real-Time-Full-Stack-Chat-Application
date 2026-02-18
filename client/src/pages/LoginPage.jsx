@@ -55,7 +55,7 @@ const LoginPage = () => {
             )
           }
 
-          <button type='submit' className='py-3 bg-gradient-to-r from-purple-400 to-violet-600 text-white rounded-md cursor-pointer'>
+          <button type='submit' className='py-3 bg-linear-to-r from-purple-400 to-violet-600 text-white rounded-md cursor-pointer'>
               {currState === "Sign Up" ? "Create Acccount" : "Login Now"}
           </button>
 
@@ -64,9 +64,20 @@ const LoginPage = () => {
             <p>Agree to the terms of Use & Privacy Policy.</p>
           </div>
 
+          <div className='flex flex-col gap-2'>
+            {currState === "Sign Up" ? (
+              <p className='text-sm text-gray-600' >Already have an Account? <span>Login here</span> </p>
+            ) : (
+              <p className='text-sm text-gray-600'>Create an Account!<span>Click here</span></p>
+            )}
+          </div>
+        
       </form>
     </div>
   )
 }
+
+
+
 
 export default LoginPage
