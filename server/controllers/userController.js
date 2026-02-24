@@ -2,17 +2,18 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../lib/utils.js";
 import cloudinary from "../lib/cloudinary.js";
+import jwt from "jsonwebtoken";
 
 
 
 // Sign Up new User
 
-export const signup = async () => {
+export const signup = async (req, res) => {
     const { fullName, email, password, bio } = req.body;
 
     try {
         if (!fullName || !email || !password || !bio){
-            return resizeBy.json({success: false, message: "Missing Details"})
+            return res.json({success: false, message: "Missing Details"})
         }
 
         const user = await User.findOne({email});
@@ -36,7 +37,7 @@ export const signup = async () => {
         
     } catch (error) {
         console.log(error.message);
-        res.json({success: false, message: error.message})
+        res.json({success: false, message: error.message});
     }
 }
 

@@ -23,6 +23,8 @@ export const AuthProvider = ({ children }) => {
 
 const checkAuth = async () => {
     try {
+        if (!token) return;
+
         const { data } = await axios.get("/api/auth/check");
         if(data.success){
             setAuthUser(data.user)
@@ -100,6 +102,7 @@ const connectSocket = (userData) => {
 useEffect(() => {
     if(token){
         axios.defaults.headers.common["token"] = token;
+        checkAuth();
     }
     checkAuth();
 },[])
