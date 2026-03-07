@@ -3,6 +3,7 @@ import assets, { messagesDummyData } from '../assets/assets'
 import { formatMessageTime } from '../lib/utils'
 import { ChatContext } from '../../context/ChatContext'
 import { AuthContext } from '../../context/Authcontext'
+import toast from 'react-hot-toast'
 
 const ChatContainer = () => {
 
@@ -20,6 +21,23 @@ const ChatContainer = () => {
       if(input.trim() === "") return null;
       await sendMessage({text: input.trim()});
       setInput("")
+  }
+
+  // handle sending an image
+
+  const handleSendImage = async (e) => {
+      const file = e.target.files[0];
+      if(!file || !file.type.startsWith("image/")){
+        toast.error("Select an Image File")
+        return;
+      }
+      const reader = new FileReader();
+
+      reader.onloadend = async () => {
+        await sendMessage({ image: reader.result })
+        e.target.value = ""
+      }
+      reader.readAsDataURL(file)
   }
 
   useEffect(() => {
