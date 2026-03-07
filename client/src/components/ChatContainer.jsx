@@ -50,10 +50,10 @@ const ChatContainer = () => {
     <div className='h-full overflow-scroll relative backdrop-blur-lg'>
       {/* --- Header --- */}
       <div className='flex items-center gap-3 py-3 mx-4 border-b border-stone-500'>
-        <img src={assets.profile_martin} alt="" className='w-8 rounded-full' />
+        <img src={selectedUser.profilePic || assets.avatar_icon} alt="" className='w-8 rounded-full' />
         <p className='flex-1 text-lg text-white flex items-center gap-2'>
-          Martin Johnson
-          <span className='w-2 h-2 rounded-full bg-green-500'></span>
+         {selectedUser.fullName}
+          {onlineUsers.includes(selectedUser._id)}<span className='w-2 h-2 rounded-full bg-green-500'></span>
         </p>
         <img onClick={() => setSelectedUserelectedUser(null)} src={assets.arrow_icon} alt="" className='md:hidden max-w-7' />
         <img src={assets.help_icon} alt="" className='max-md:hidden max-w-5'/>
@@ -83,7 +83,7 @@ const ChatContainer = () => {
             <input onChange={(e)=>setInput(e.target.value)} value={input} onKeyDown={(e)=> e.key === "Enter" ? handleSendMessage(e) : null} 
             type="text" placeholder='Send a Message...' 
             className='flex-1 text-sm p-3 border-none rounded-lg outline-none text-white placeholder-gray-400' />
-            <input type="file" id='image' accept='image/png, image/jpeg' hidden />
+            <input onChange={handleSendImage} type="file" id='image' accept='image/png, image/jpeg' hidden />
             <label htmlFor="image">
               <img src={assets.gallery_icon} alt="" className='w-5 mr-2 cursor-pointer' />
             </label>
