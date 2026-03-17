@@ -40,11 +40,17 @@ const ChatContainer = () => {
       reader.readAsDataURL(file)
   }
 
+  useEffect(()=>{
+    if(selectedUser){
+      getMessages(selectedUser._id)
+    }
+  },[selectedUser])
+
   useEffect(() => {
     if(scrollEnd.current){
       scrollEnd.current.scrollIntoView({ behaviour: 'smooth' })
     }
-  },[])
+  },[messages])
 
   return selectedUser ? (
     <div className='h-full overflow-scroll relative backdrop-blur-lg'>
@@ -102,3 +108,4 @@ const ChatContainer = () => {
 }
 
 export default ChatContainer
+
