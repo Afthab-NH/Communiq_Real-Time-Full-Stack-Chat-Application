@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import assets from '../assets/assets'
 import { AuthContext } from '../../context/Authcontext'
+import logo_icon from '../assets/logo_icon.svg';
 
 const LoginPage = () => {
 
@@ -38,7 +39,13 @@ const LoginPage = () => {
 
       {/* --- Left --- */}
 
-      <img src={assets.logo_big} alt="" className='w-[min(30vw,250px)]' />
+      <div className="flex flex-col items-center">
+  <img src={assets.logo_icon} alt="" className='w-[min(30vw,250px)]' />
+  <h1 className="mt-2 text-4xl font-semibold text-white">Communiq</h1>
+   <p className="text-sm text-gray-500 mt-1">
+    Chat anywhere, anytime!
+  </p>
+</div>
 
       {/* --- Right --- */}
     
